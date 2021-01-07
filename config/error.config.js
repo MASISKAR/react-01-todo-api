@@ -54,7 +54,7 @@ const {uploadedFileSizeLimit} = require("./attachment.config");
   wrongRefreshToken: {
     name: "wrongRefreshToken",
     message: "Refresh token not found",
-    status: 400
+    status: 404
   },
   invalidRefreshToken: {
     name: "invalidRefreshToken",

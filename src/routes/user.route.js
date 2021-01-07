@@ -11,6 +11,9 @@ const express = require('express'),
 // Create a new user
 userRouter.post('/', validator('user-create'), userController.create);
 
+// Update token
+userRouter.put('/:id/token', userController.updateToken);
+
 // Update user info
 userRouter.put('/', auth, validator('user-update'), userController.update);
 
@@ -21,14 +24,6 @@ userRouter.get('/', auth, userController.getInfo);
 userRouter.post('/sign-in', validator('user-sign-in'), userController.signIn);
 
 //  Sign out
-userRouter.post('/sign-out', auth, validator('user-sign-out'), userController.signOut);
-
-
-
-
-//fixme
-
-// update token
-// userRouter.put('/:id/update-token', userController.token_update);
+userRouter.post('/sign-out', validator('user-sign-out'), userController.signOut);
 
 module.exports = userRouter;

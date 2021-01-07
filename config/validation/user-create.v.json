@@ -15,6 +15,12 @@
           "type": "string",
           "minLength": 6
         },
+        "confirmPassword": {
+          "const": {
+            "$data": "1/password"
+          },
+          "type": "string"
+        },
         "name": {
           "type": "string",
           "minLength": 1
@@ -27,6 +33,7 @@
       "required": [
         "email",
         "password",
+        "confirmPassword",
         "name",
         "surname"
       ]

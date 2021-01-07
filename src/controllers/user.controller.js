@@ -61,7 +61,7 @@ class UserController {
         .remove({jwt: req.body.jwt})
         .then(result => {
             if(!result.deletedCount) throw errorConfig.defaultError;
-            res.json();
+            res.json({success: true});
         })
         .catch(err => next(err));
     }
@@ -102,12 +102,27 @@ class UserController {
      * @param  {Object} res - response data and methods
      * @param  {Function} next - pass request to next endpoint
      **/
-    // token_update(req, res, next) {
-    //   user_model.token_update(req.params.id, req.body)
-    //   .then(token => res.json(token))
-    //   .catch(err => next(err));
-    // }
-    //fixme
+    updateToken = async (req, res, next)=> {
+        try{
+            const id = req.params.id;
+            let token = await tokenSchema.findOne({owner: id, refreshToken: req.body.refreshToken});
+            if (!token) throw errorConfig.wrongRefreshToken;
+    
+            //check the expiration of the refresh token
+            if (new Date().getTime() - new Date(token.updated_at).getTime() >= authConfig.refreshToken.exp) {
+                throw errorConfig.invalidRefreshToken;
+            }
+    
+            const newTokenPair = await this.generateJWT({user_id: id});
+            token = Object.assign(token, newTokenPair);
+    
+            await token.save();
+            res.json(newTokenPair);
+        }
+      catch(err){
+            next(err);
+        }
+    }
     
     /**
      * @param password
