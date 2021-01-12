@@ -191,7 +191,7 @@ surname: `{String}`
 
 
 #### Sending contact form
-request url `API_HOST/contact`
+request url `API_HOST/form`
 
 request method `POST`
 

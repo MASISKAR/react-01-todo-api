@@ -1,11 +1,11 @@
 'use strict';
 
 const express = require('express'),
-      index_router = express.Router();
+      indexRouter = express.Router();
 
 /* GET home page. */
-index_router.get('/', (req, res) => {
+indexRouter.get('/', (req, res) => {
   res.status(200).send('Root route not exists, please move to /client path');
 });
 
-module.exports = index_router;
+module.exports = indexRouter;
