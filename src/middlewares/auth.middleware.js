@@ -9,7 +9,7 @@ module.exports = (req, res, next) => {
   let token = req.headers['authorization'];
   
   if (typeof token === 'undefined') {
-    return res.status(401).json({errors: [errorConfig.notAuthorized]}).end();
+    return res.status(401).json({error: errorConfig.notAuthorized}).end();
   }
   
   let bearer = token.split(' ');

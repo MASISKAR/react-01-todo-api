@@ -22,7 +22,7 @@ class TaskController {
         try {
             const task = await taskSchema.findOne({
                 _id: req.params.id,
-                // owner: res.locals.userId
+                owner: res.locals.userId
                 //fixme
             });
             if (!task) throw errorConfig.taskNotFound;
@@ -36,7 +36,7 @@ class TaskController {
         try {
             const task = await taskSchema.findOne({
                 _id: req.params.id,
-                // owner: res.locals.userId
+                owner: res.locals.userId
                 //fixme
             });
             if (!task) throw errorConfig.taskNotFound;
@@ -59,7 +59,7 @@ class TaskController {
         try {
             const task = await taskSchema.findOneAndDelete({
                 _id: req.params.id,
-                // owner: res.locals.userId
+                owner: res.locals.userId
                 //fixme
             });
             
@@ -91,7 +91,7 @@ class TaskController {
             
             const dbQuery = {
                 //fixme
-                // owner: userId
+                owner: userId
             };
     
             const {status} = query;
