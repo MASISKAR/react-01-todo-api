@@ -105,6 +105,7 @@ class UserController {
     updateToken = async (req, res, next)=> {
         try{
             const id = req.params.id;
+            console.log('id', id)
             let token = await tokenSchema.findOne({owner: id, refreshToken: req.body.refreshToken});
             if (!token) throw errorConfig.wrongRefreshToken;
     
@@ -113,7 +114,7 @@ class UserController {
                 throw errorConfig.invalidRefreshToken;
             }
     
-            const newTokenPair = await this.generateJWT({user_id: id});
+            const newTokenPair = await this.generateJWT({userId: id});
             token = Object.assign(token, newTokenPair);
     
             await token.save();
