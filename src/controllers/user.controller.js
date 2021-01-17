@@ -51,8 +51,8 @@ class UserController {
             await tokenModel.save();
             res.json(token);
         }
-        catch (err) {
-            res.status(403).json(err);
+        catch (error) {
+            next(error);
         }
     }
     
