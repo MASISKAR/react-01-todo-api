@@ -26,4 +26,7 @@ userRouter.post('/sign-in', validator('user-sign-in'), userController.signIn);
 //  Sign out
 userRouter.post('/sign-out', validator('user-sign-out'), userController.signOut);
 
+//  Change user password
+userRouter.put('/password', auth, validator('user-password-update'), userController.updatePassword);
+
 module.exports = userRouter;

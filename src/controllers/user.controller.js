@@ -31,6 +31,25 @@ class UserController {
             next(err);
         }
     }
+
+    updatePassword = async (req, res, next) => {
+        try {
+            const data = req.body;
+            const user = await userSchema.findById(res.locals.userId);
+
+            const match = await bcrypt.compare(authConfig.pass.prefix + data.oldPassword, user.password);
+            if (!match) throw errorConfig.emailOrPasswordNotFound;
+
+            const newPassword = await this.generatePassHash(data.newPassword);
+            user.password = newPassword;
+
+            await user.save();
+            res.json({success: true});
+        }
+        catch (err) {
+            next(err);
+        }
+    }
     
     signIn = async (req, res, next)=> {
         try {
