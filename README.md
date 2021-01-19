@@ -189,6 +189,17 @@ name: `{String}`
 surname: `{String}`
 `}`  
 
+#### Update user password
+request url `API_HOST/user/password`
+
+request method `PUT`
+
+request body 
+`{`
+oldPassword: `{String}`
+newPassword: `{String}`
+confirmNewPassword: `{String}`
+`}` 
 
 #### Sending contact form
 request url `API_HOST/form`
